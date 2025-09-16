@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card } from "@/components/ui/card"
-import { Send, Bot, User, Moon, Sun, Plus, MessageSquare } from "lucide-react"
+import { Send, Bot, User, Moon, Sun, Plus, MessageSquare, Menu, X, Home } from "lucide-react"
+import { useSearchParams, useRouter } from "next/navigation"
 
 interface Message {
   id: string
@@ -18,6 +19,10 @@ interface Message {
 }
 
 export function ChatInterface() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const initialMessage = searchParams.get("message")
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -29,8 +34,39 @@ export function ChatInterface() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (initialMessage && initialMessage.trim()) {
+      handleInitialMessage(initialMessage.trim())
+    }
+  }, [initialMessage])
+
+  const handleInitialMessage = async (message: string) => {
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      content: message,
+      role: "user",
+      timestamp: new Date(),
+    }
+
+    setMessages((prev) => [...prev, userMessage])
+    setIsLoading(true)
+
+    // Simulate API call - replace with your backend integration
+    setTimeout(() => {
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "இது ஒரு மாதிரி பதில். உங்கள் backend API-யுடன் இதை இணைக்கவும்.",
+        role: "assistant",
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, assistantMessage])
+      setIsLoading(false)
+    }, 1000)
+  }
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -82,10 +118,16 @@ export function ChatInterface() {
     ])
   }
 
+  const goToHome = () => {
+    router.push("/")
+  }
+
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
-      <div className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
+      <div
+        className={`${sidebarOpen ? "w-64" : "w-0"} transition-all duration-300 overflow-hidden bg-sidebar border-r border-sidebar-border flex flex-col`}
+      >
         <div className="p-4 border-b border-sidebar-border">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -134,6 +176,9 @@ export function ChatInterface() {
         <div className="border-b border-border bg-card/50 backdrop-blur-sm">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2">
+                {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              </Button>
               <Avatar className="w-8 h-8">
                 <AvatarFallback className="bg-primary text-primary-foreground">
                   <Bot className="w-4 h-4" />
@@ -144,6 +189,15 @@ export function ChatInterface() {
                 <p className="text-xs text-muted-foreground">Tamil Language Model • Online</p>
               </div>
             </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={goToHome}
+              className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+            >
+              <Home className="w-4 h-4" />
+              <span className="hidden sm:inline">Home</span>
+            </Button>
           </div>
         </div>
 
