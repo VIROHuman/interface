@@ -1,9 +1,9 @@
-import { ChatInterface } from "@/components/chat-interface"
+import { LandingPage } from "@/components/landing-page"
 
 export default function Home() {
   return (
-    <main className="h-screen bg-background">
-      <ChatInterface />
+    <main className="min-h-screen bg-background">
+      <LandingPage />
     </main>
   )
 }
