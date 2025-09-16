@@ -103,13 +103,13 @@ export function LandingPage() {
               unprecedented accuracy and cultural awareness.
             </p>
             <div className="bg-muted/50 rounded-lg p-4 mb-8 max-w-3xl mx-auto">
-              <p className="text-sm text-slate-600 mb-2">
+              <p className="text-sm text-slate-800 mb-2">
                 <span className="font-semibold">Developed by:</span>
               </p>
-              <p className="text-sm text-slate-700 font-medium">
+              <p className="text-sm text-slate-800 font-medium">
                 Centre of Excellence for Agentic Twins Lab, SRMIST Kattankulathur
               </p>
-              <p className="text-sm text-slate-700 font-medium">in collaboration with Tamil Computing Centre</p>
+              <p className="text-sm text-slate-800 font-medium">in collaboration with Tamil Computing Centre</p>
             </div>
           </div>
 
@@ -230,10 +230,29 @@ export function LandingPage() {
             {/* Institutional Info */}
             <div className="text-center">
               <h3 className="font-semibold text-foreground mb-4">Developed By</h3>
-              <div className="space-y-2">
-                <p className="text-sm text-slate-700 font-medium">Centre of Excellence for Agentic Twins Lab</p>
-                <p className="text-sm text-slate-600">SRMIST Kattankulathur</p>
-                <p className="text-sm text-slate-700 font-medium mt-3">Tamil Computing Centre</p>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm text-slate-700 font-medium mb-2">Faculties:</p>
+                  <div className="text-xs text-slate-600 space-y-1">
+                    <p>Dr. Shanmugam K</p>
+                    <p>Dr. Udendhran R</p>
+                    <p>Dr. Dinesh G</p>
+                    <p>Dr. Babu R</p>
+                    <p>Dr. Selvakumarasamy S</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-slate-700 font-medium mb-2">Students:</p>
+                  <div className="text-xs text-slate-600 space-y-1">
+                    <p>Bhargav Raj</p>
+                    <p>Mahee Tibrewal</p>
+                  </div>
+                </div>
+                <div className="pt-2 border-t border-border/50">
+                  <p className="text-xs text-slate-600">Centre of Excellence for Agentic Twins Lab</p>
+                  <p className="text-xs text-slate-600">SRMIST Kattankulathur</p>
+                  <p className="text-xs text-slate-600 mt-1">Tamil Computing Centre</p>
+                </div>
               </div>
             </div>
 
@@ -298,7 +317,7 @@ export function LandingPage() {
           {/* Bottom Bar */}
           <div className="border-t border-border pt-6 text-center">
             <p className="text-sm text-slate-600">
-              © 2024 TLM 1.0 • Centre of Excellence for Agentic Twins Lab, SRMIST Kattankulathur • Tamil Computing
+              © 2025 TLM 1.0 • Centre of Excellence for Agentic Twins Lab, SRMIST Kattankulathur • Tamil Computing
               Centre
             </p>
             <p className="text-xs text-slate-500 mt-2">Built with care for the Tamil community</p>
